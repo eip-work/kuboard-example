@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.eip.example.svc.book.BookDao">
+
+    <resultMap id="entity" type="work.eip.example.svc.book.BookEntity">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <id column="name" property="name" jdbcType="VARCHAR" />
+        <id column="author" property="author" jdbcType="VARCHAR" />
+        <id column="sn" property="sn" jdbcType="VARCHAR" />
+        <id column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <id column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <insert id="insert" parameterType="work.eip.example.svc.book.BookEntity" >
+        INSERT INTO book
+          (id, name, author, sn)
+        VALUES
+        (#{id}, #{name}, #{author}, #{sn})
+    </insert>
+
+    <select id="query" resultMap="entity">
+        SELECT * FROM book
+    </select>
+
+    <select id="findById" resultMap="entity">
+        SELECT * FROM book
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM book
+        WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="work.eip.example.svc.book.BookEntity" >
+        update book
+        <set>
+            <if test="name !=null and name !=''">
+                name =#{name},
+            </if>
+            <if test="author !=null and author !=''">
+                author =#{author},
+            </if>
+            <if test="sn !=null and sn !=''">
+                sn =#{sn},
+            </if>
+        </set>
+    </update>
+
+</mapper>

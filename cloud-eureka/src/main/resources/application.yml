@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: cloud-eureka
+
+server:
+  port: 9200
+management:
+  endpoints:
+    web.exposure.include: metrics
+  server:
+    port: 9500
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: ${CLOUD_EUREKA_DEFAULT_ZONE}
+  server:
+    eviction-interval-timer-in-ms: 60000
+    enable-self-preservation: false

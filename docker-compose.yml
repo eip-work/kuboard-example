@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db-example:
+    image: eipwork/example-db-example:latest
+    environment:
+      MYSQL_ROOT_PASSWORD:  x87hxpE36Js%l
+    volumes:
+      - eip-db-example:/var/lib/mysql
+    ports:
+      - "8806:3306"
+
+volumes:
+  eip-db-example:
+    driver: local

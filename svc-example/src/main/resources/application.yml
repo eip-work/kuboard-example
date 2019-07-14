@@ -1,0 +1,55 @@
+
+server:
+  maxHttpHeaderSize: 102400
+  port: 9301
+management:
+  endpoints:
+    web.exposure.include: prometheus
+  server:
+    port: 9401
+
+spring:
+  application:
+    name: svc-example
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: ${DB_EXAMPLE_URL}
+    username: ${DB_EXAMPLE_USERNAME}
+    password: ${DB_EXAMPLE_PASSWORD}
+
+mybatis:
+  global-config:
+    id-type: 0
+    db-column-underline: true
+
+eureka:
+  instance:
+    preferIpAddress: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+  client:
+    serviceUrl:
+      defaultZone: ${CLOUD_EUREKA_DEFAULT_ZONE}
+
+feign.sentinel.enabled: true
+
+ribbon:
+  ConnectTimeOut: 3000
+  ReadTimeout: 40000
+  MaxAutoRetries: 1 #对当前实例的重试次数
+  MaxAutoRetriesNextServer: 1 #切换实例的重试次数
+  ServerListRefreshInterval: 5000
+
+log:
+  path: ${spring.application.name}-logs
+
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  page-size-zero: true

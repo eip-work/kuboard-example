@@ -1,0 +1,36 @@
+
+server:
+  maxHttpHeaderSize: 102400
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway, prometheus
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      # AfterRoutePredicateFactory: 请求时间满足在配置时间之后
+      # BeforeRoutePredicateFactory: 请求时间满足在配置时间之前
+      # BetweenRoutePredicateFactory: 请求时间满足在配置时间之间
+
+eureka:
+  instance:
+    preferIpAddress: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+  client:
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 50
+    serviceUrl:
+      defaultZone: ${CLOUD_EUREKA_DEFAULT_ZONE}
+
+

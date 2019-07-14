@@ -1,0 +1,13 @@
+
+server:
+  port: 9201
+management:
+  server:
+    port: 9001
+
+spring:
+  application:
+    name: gateway-example
+
+
+
