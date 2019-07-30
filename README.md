@@ -5,7 +5,8 @@ kuboard 的主要特点：
 * 微服务分层显示
 * 关联到微服务上下文的监控
 
-
+详细文档请参考 Kuboard 官网，
+[https://kuboard.cn](https://kuboard.cn)
 
 kuboard-example 完成部署后的效果如下所示：
 
